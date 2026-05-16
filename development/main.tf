@@ -1,5 +1,5 @@
 module "networking" {
-  source = "/modules/networking"
+  source = "../modules/networking"
 
   project_name = "rose-experimental"
 
