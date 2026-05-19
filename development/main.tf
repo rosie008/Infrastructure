@@ -5,5 +5,14 @@ module "networking" {
 
   vpc_cidr_block = "10.1.0.0/16"
 
-  
+}
+
+module "bastion-host" {
+  source = "../modules/bastion"
+
+  key-pair = "C:/Users/USER/Documents/rose/project/key/id_rsa.pub"
+  project_name = "rose-experimental"
+  vpc_id = module.networking.vpc_id
+  subnet_id = module.networking.public_subnet_id
+  instance_type = "t3.micro"
 }
