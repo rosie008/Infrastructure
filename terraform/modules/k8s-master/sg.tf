@@ -1,6 +1,6 @@
 resource "aws_security_group" "private_sg" {
   name        = "${var.project_name}-private-sg"
-  description = "Allow SSH inbound traffic and all outbound traffic"
+  description = "Allow  inbound traffic and all outbound traffic for private instances"
   vpc_id      = var.vpc_id
 
   tags = {
