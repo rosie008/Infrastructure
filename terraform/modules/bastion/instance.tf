@@ -9,7 +9,7 @@ resource "aws_instance" "bastion" {
   ami           = var.ami_id
   instance_type = "${var.instance_type}"
 
-  iam_instance_profile = var.iam_instance_profile
+  iam_instance_profile    = var.iam_instance_profile
   key_name                    = aws_key_pair.key-pair.key_name  
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.allow_ssh.id]
