@@ -12,6 +12,11 @@ module "ssm_role" {
   project_name = "rose-experimental"
 }
 
+module "ami" {
+  source = "../modules/ami"
+  filter_name = "ubuntu/images/hvm-ssd-gp3/ubuntu-resolute-26.04-amd64-*"
+}
+
 module "bastion-host" {
   source = "../modules/bastion"
 
@@ -19,6 +24,7 @@ module "bastion-host" {
   project_name = "rose-experimental"
   vpc_id = module.networking.vpc_id
   subnet_id = module.networking.public_subnet_id
+  ami_id = module.ami.ami_id
   instance_type = "t3.micro"
   iam_instance_profile = module.ssm_role.iam_instance_profile
 }
@@ -32,6 +38,7 @@ module "lb" {
   project_name = "rose-experimental"
   vpc_id = module.networking.vpc_id
   subnet_id = module.networking.public_subnet_id
+  ami_id = module.ami.ami_id
   instance_type = "t3.micro"
   iam_instance_profile = module.ssm_role.iam_instance_profile
 }

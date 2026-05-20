@@ -1,21 +1,5 @@
-data "aws_ami" "ubuntu" {
-  most_recent = true
-  owners      = ["099720109477"]
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-resolute-26.04-amd64-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-}
-
-
 resource "aws_instance" "nginx" {
-  ami           = data.aws_ami.ubuntu.id
+  ami           = var.ami_id
   instance_type = "${var.instance_type}"
 
   iam_instance_profile = var.iam_instance_profile

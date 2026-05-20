@@ -21,3 +21,7 @@ variable "key-pair" {
 variable "iam_instance_profile" {
   type = string
 }
+
+variable "ami_id" {
+  type = string
+}
