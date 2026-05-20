@@ -13,10 +13,16 @@ data "aws_ami" "ubuntu" {
   }
 }
 
+module "iam" {
+  source = "../iam/ssm-role"
+  project_name = var.project_name
+}
+
 resource "aws_instance" "nginx" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "${var.instance_type}"
 
+  iam_instance_profile = module.iam.iam_instance_profile
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.allow_web_traffic.id]
   subnet_id                   = var.subnet_id
