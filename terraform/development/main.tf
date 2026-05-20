@@ -16,3 +16,14 @@ module "bastion-host" {
   subnet_id = module.networking.public_subnet_id
   instance_type = "t3.micro"
 }
+
+module "lb" {
+  source = "../modules/lb"
+
+  backend_1 = module.bastion-host.public_ip
+  backend_2 = module.bastion-host.public_ip
+  project_name = "rose-experimental"
+  vpc_id = module.networking.vpc_id
+  subnet_id = module.networking.public_subnet_id
+  instance_type = "t3.micro"
+}
