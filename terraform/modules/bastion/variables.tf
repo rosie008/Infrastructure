@@ -17,3 +17,7 @@ variable "subnet_id" {
 variable "key-pair" {
   type = string
 }
+
+variable "iam_instance_profile" {
+  type = string
+}

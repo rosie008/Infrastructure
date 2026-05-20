@@ -7,6 +7,11 @@ module "networking" {
 
 }
 
+module "ssm_role" {
+  source = "../modules/iam/ssm-role"
+  project_name = "rose-experimental"
+}
+
 module "bastion-host" {
   source = "../modules/bastion"
 
@@ -15,7 +20,9 @@ module "bastion-host" {
   vpc_id = module.networking.vpc_id
   subnet_id = module.networking.public_subnet_id
   instance_type = "t3.micro"
+  iam_instance_profile = module.ssm_role.iam_instance_profile
 }
+
 
 module "lb" {
   source = "../modules/lb"
@@ -26,4 +33,5 @@ module "lb" {
   vpc_id = module.networking.vpc_id
   subnet_id = module.networking.public_subnet_id
   instance_type = "t3.micro"
+  iam_instance_profile = module.ssm_role.iam_instance_profile
 }

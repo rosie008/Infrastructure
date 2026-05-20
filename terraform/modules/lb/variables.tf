@@ -21,3 +21,7 @@ variable "backend_1" {
 variable "backend_2" {
   type = string
 }
+
+variable "iam_instance_profile" {
+  type = string
+}
