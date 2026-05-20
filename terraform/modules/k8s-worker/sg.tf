@@ -1,10 +1,10 @@
 resource "aws_security_group" "private_sg" {
-  name        = "${var.project_name}-k8s-master-sg"
+  name        = "${var.project_name}-k8s-worker-sg"
   description = "Allow  inbound traffic and all outbound traffic for private instances"
   vpc_id      = var.vpc_id
 
   tags = {
-    Name = "${var.project_name}-k8s-master-sg"
+    Name = "${var.project_name}-k8s-worker-sg"
   }
 }
 
