@@ -81,6 +81,14 @@ cp -i /etc/kubernetes/admin.conf /home/ubuntu/.kube/config
 
 chown ubuntu:ubuntu /home/ubuntu/.kube/config
 
+
+# Kube config for ssm user
+mkdir -p ~/.kube
+
+sudo cp /etc/kubernetes/admin.conf ~/.kube/config
+
+sudo chown $(id -u):$(id -g) ~/.kube/config
+
 # Install Flannel CNI
 su - ubuntu -c "kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml"
 

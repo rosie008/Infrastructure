@@ -10,7 +10,7 @@ resource "aws_security_group" "private_sg" {
 
 resource "aws_vpc_security_group_ingress_rule" "allow_private_ipv4" {
   security_group_id = aws_security_group.private_sg.id
-  cidr_ipv4         = "10.1.2.0/24"
+  cidr_ipv4         = var.private_subnet_cidr
   ip_protocol       = "-1" 
 }
 

@@ -21,3 +21,7 @@ variable "iam_instance_profile" {
 variable "ami_id" {
   type = string
 }
+
+variable "private_subnet_cidr" {
+  type = string
+}

@@ -42,3 +42,15 @@ module "lb" {
   instance_type = "t3.micro"
   iam_instance_profile = module.ssm_role.iam_instance_profile
 }
+
+module "k8s-master" {
+  source = "../modules/k8s-master"
+
+  project_name = "rose-experimental"
+  vpc_id = module.networking.vpc_id
+  subnet_id = module.networking.private_subnet_id
+  private_subnet_cidr = module.networking.private_subnet_cidr
+  ami_id = module.ami.ami_id
+  instance_type = "t3.medium"
+  iam_instance_profile = module.ssm_role.iam_instance_profile
+}
